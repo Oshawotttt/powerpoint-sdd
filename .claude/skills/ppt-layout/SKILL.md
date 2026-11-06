@@ -83,4 +83,4 @@ In both modes, list every slide with a poor fit, including slides that keep the 
 - `<section>` slide 3, <layout name>: <what does not fit, such as 6 items for 4 regions>. Closest alternative: <layout name>.
 ```
 
-After `suggest`, list each open question with a link to its section file, and point to `/ppt-plan` to settle them.
+After `suggest`, list each open question with a link to its section file, and point to `/ppt-spec` to settle them.

@@ -29,7 +29,7 @@ Read `ARCHITECTURE_FILE` and every section file. The spec is approved when all o
 - Every section's `Blocked by` holds no items.
 - Every resource a slide references exists.
 
-If any check fails, list every failure, point the user to `/ppt-plan`, and stop. Build the whole deck or none of it.
+If any check fails, list every failure, point the user to `/ppt-spec`, and stop. Build the whole deck or none of it.
 
 ## 3. Map the spec to slides
 

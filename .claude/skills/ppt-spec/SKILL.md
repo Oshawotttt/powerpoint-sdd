@@ -1,9 +1,9 @@
 ---
-name: ppt-plan
-description: Plan a PowerPoint as a spec through discussion, turning an idea dump, outline, scope, or repo into an approved spec. Use when the user wants to plan, outline, or spec a presentation.
+name: ppt-spec
+description: Spec a PowerPoint through discussion, turning an idea dump, outline, scope, or repo into an approved spec. Use when the user wants to plan, outline, or spec a presentation.
 ---
 
-Plan a deck with the user as a discussion, in three stages. Each stage ends on the user's explicit approval. The skill ends at an approved spec in `PROJECT_SPEC_DIR`; `ppt-generate` builds the PowerPoint from it.
+Spec a deck with the user as a discussion, in three stages. Each stage ends on the user's explicit approval. The skill ends at an approved spec in `PROJECT_SPEC_DIR`; `ppt-generate` builds the PowerPoint from it.
 
 ## Start
 
