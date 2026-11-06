@@ -18,12 +18,9 @@ Skills refer to files by the names below. To move a file, change its path here. 
 | `OUTPUT_DIR` | `output/` | All finished decks and their build scripts. |
 | `DECK_FILE` | `output/<project>/<project>.pptx` | Finished PowerPoint file. `/ppt-generate` writes it. |
 | `BUILD_SCRIPT` | `output/<project>/build/build.js` | Script that generates the deck. `/ppt-generate` writes and reruns it. |
-| `TEMPLATES_DIR` | `templates/` | Templates and local design systems. `/ppt-layout` and `/ppt-generate` list it to choose a design system. |
-| `TEMPLATE_DIR` | `templates/<name>/` | One local design system. `/ppt-layout`, `/ppt-draft` and `/ppt-generate` read it. |
-| `TEMPLATE_FILE` | `templates/<name>.pptx` or `.potx` | One PowerPoint template. `/ppt-layout`, `/ppt-draft` and `/ppt-generate` read it. |
 | `CONTEXT_DIR` | `context/` | All cloned repos. `/ppt-spec` searches it for facts. |
 | `CONTEXT_REPO_DIR` | `context/<repo>/` | One cloned repo, for reference when drafting. `/ppt-spec` clones into it. |
 
 Skill sources, in `.claude/skills/`: `ppt-init` sets up the folders and this map in a repo. `ppt-spec` creates a spec through discussion. `ppt-layout` assigns a design system's layouts to the spec's slides. `ppt-draft` drafts the hardest slides in HTML. `ppt-generate` builds the deck from an approved spec and a design system.
 
-`OUTPUT_DIR`, `SPEC_DIR`, `TEMPLATES_DIR` and `CONTEXT_DIR` are gitignored, so their contents exist only on this machine. Ripgrep-based search skips them by default; pass `--no-ignore` or target the path directly.
+`OUTPUT_DIR`, `SPEC_DIR` and `CONTEXT_DIR` are gitignored, so their contents exist only on this machine. Ripgrep-based search skips them by default; pass `--no-ignore` or target the path directly.
