@@ -10,10 +10,7 @@ Prerequisites:
 - **Anthropic's `pptx` skill.** `/ppt-generate` uses it for the build mechanics and QA. Skip this if you already have it enabled on claude.ai.
 
   ```
-  /plugin marketplace add anthropics/skills
-  ```
-  ```
-  /plugin install document-skills@anthropic-agent-skills
+  /plugin install document-skills --marketplace anthropics/skills
   ```
 
 - **A design system** made with Claude Design. `/ppt-layout` and `/ppt-generate` read it.
@@ -23,8 +20,6 @@ Install the plugin, then start a spec in the repo you want to keep your decks in
 ```
 /plugin install powerpoint-sdd --marketplace Oshawotttt/powerpoint-sdd
 ```
-
-Every skill takes `--dir <folder>` to say where your PowerPoint files live, except `/ppt-generate`, which takes `--spec <folder>` and `--out <folder>`. Without them, a skill uses the map `/ppt-init` saved, or asks you.
 
 On Claude Code before 2.1.275, add the marketplace first: `/plugin marketplace add Oshawotttt/powerpoint-sdd`, then `/plugin install powerpoint-sdd@powerpoint-sdd`.
 
@@ -67,7 +62,7 @@ The `ppt-generate` skill builds the deck. Little support is needed here, because
 
 ### `ppt-init`
 
-Optional. Saves where your PowerPoint files live: it creates the folders, writes a map of the file structure into `CLAUDE.md`, and can gitignore the folders. After that, the other skills stop asking for the folder. Without it, they ask for a folder.
+Optional. By default, you tell each skill where your PowerPoint files live with `--dir <folder>` (`--spec <folder>` and `--out <folder>` for `/ppt-generate`), or it asks you. `ppt-init` specifies these folders with a map in `CLAUDE.md` instead.
 
 ### `ppt-layout`
 
