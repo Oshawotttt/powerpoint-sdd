@@ -1,18 +1,29 @@
 ---
 name: ppt-spec
 description: Spec a PowerPoint through discussion, turning an idea dump, outline, scope, or repo into an approved spec. Use when the user wants to plan, outline, or spec a presentation.
+argument-hint: "[--dir folder]"
 ---
 
-Spec a deck with the user as a discussion, in three stages. Each stage ends on the user's explicit approval. The skill ends at an approved spec in `PROJECT_SPEC_DIR`; `ppt-generate` builds the PowerPoint from it.
+Spec a deck with the user as a discussion, in three stages. Each stage ends on the user's explicit approval. The skill ends at an approved spec in `SPEC_DIR`; `ppt-generate` builds the PowerPoint from it.
 
 ## Start
 
-`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop.
+**Folder:** the `--dir <folder>` argument, or else the folder an earlier `ppt-` skill used in this conversation. Otherwise, if the repo's `CLAUDE.md` or a file it points to has a `PowerPoint map` heading, take the paths below from that section. Otherwise ask the user for the folder path and wait. Create folders as you first write into them, and write nothing outside the folder.
+
+Paths, relative to the folder. The folder holds one deck:
+
+- `SPEC_DIR`: `spec/`
+- `ARCHITECTURE_FILE`: `spec/ARCHITECTURE.md`
+- `SECTION_FILE`: `spec/<section>.md`
+- `RESOURCE_DIR`: `spec/resources/<section>/`
+- `GRAPH_DIR`: `spec/resources/<section>/<graph-name>/`
+- `CONTEXT_DIR`: `context/`
+- `CONTEXT_REPO_DIR`: `context/<repo>/`
 
 Take whatever the user gives: an idea dump, a current outline, a scope, a repo, or a mix.
 
 - **Repo URL:** clone it into `CONTEXT_REPO_DIR` and read what bears on the presentation.
-- **Project already in `SPEC_DIR`:** read `ARCHITECTURE_FILE` and resume at the first section whose status is not `approved`.
+- **`ARCHITECTURE_FILE` already exists:** read it and resume at the first section whose status is not `approved`.
 
 ## Frontier questioning
 
@@ -41,7 +52,7 @@ If the sections span multiple dimensions, such as several products each covered 
 
 The frontier here includes audience, duration, goal, and the language and concision of slide text. Revise until the user approves.
 
-Stage 1 is complete when the user has approved and every item in their input sits in a section or was cut with their agreement. Then write `ARCHITECTURE_FILE`. If the user named no project, choose a short kebab-case name and tell them.
+Stage 1 is complete when the user has approved and every item in their input sits in a section or was cut with their agreement. Then write `ARCHITECTURE_FILE`.
 
 ```markdown
 # <Presentation title>

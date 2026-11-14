@@ -1,16 +1,36 @@
 ---
 name: ppt-generate
-description: Build a PowerPoint .pptx from a project's approved spec and a design system. Use when the user wants to generate or build the deck for a spec.
-argument-hint: "[project] [design system]"
+description: Build a PowerPoint .pptx from an approved spec and a design system. Use when the user wants to generate or build the deck for a spec.
+argument-hint: "[--spec folder] [--out folder] [design system]"
 ---
 
 Build one `.pptx` from one approved spec and one design system. The spec owns every word and each slide's chosen layout, the design system owns the look, and this skill owns the layout of any slide with no choice recorded.
 
-`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop. Load the `pptx` skill. If it is not available, tell the user to install it with `/plugin marketplace add anthropics/skills` and then `/plugin install document-skills@anthropic-agent-skills`, and stop. The `pptx` skill owns the pptxgenjs mechanics, structured decks, and QA scripts. Where the two skills conflict, this one wins.
+**Folders:** this skill reads a spec folder and writes to an output folder.
+
+- **Spec folder:** the `--spec <folder>` argument. Otherwise the `spec/` folder inside the folder an earlier `ppt-` skill used in this conversation.
+- **Output folder:** the `--out <folder>` argument. Otherwise the `output/` folder beside that spec folder.
+- **Map:** for a folder still unsettled, if the repo's `CLAUDE.md` or a file it points to has a `PowerPoint map` heading, take `SPEC_DIR` or `OUTPUT_DIR` from that section.
+- **Ask:** for any folder still unsettled, ask the user for its path and wait.
+
+Create folders as you first write into them, and write nothing outside the output folder.
+
+Paths in the spec folder:
+
+- `ARCHITECTURE_FILE`: `ARCHITECTURE.md`
+- `SECTION_FILE`: `<section>.md`
+- `RESOURCE_DIR`: `resources/<section>/`
+- `GRAPH_DIR`: `resources/<section>/<graph-name>/`
+- `DRAFT_FILE`: `drafts/<section>-slide-<n>-<descriptor>.html`
+
+Paths in the output folder:
+
+- `DECK_FILE`: `<deck>.pptx`, where `<deck>` is the deck's title from `ARCHITECTURE_FILE` in kebab-case
+- `BUILD_SCRIPT`: `build/build.js`
+
+Load the `pptx` skill. If it is not available, tell the user to install it with `/plugin marketplace add anthropics/skills` and then `/plugin install document-skills@anthropic-agent-skills`, and stop. The `pptx` skill owns the pptxgenjs mechanics, structured decks, and QA scripts. Where the two skills conflict, this one wins.
 
 ## 1. Resolve the inputs
-
-**Project:** the one the user named. Otherwise list `SPEC_DIR` and ask.
 
 **Design system:** the one the user named, or else the one in the `ARCHITECTURE_FILE` Brief. Otherwise run the `Artifact` tool's `list` action with `type: "Design System"` and ask which to use. Design systems are created outside this repo, so with none listed, ask the user for a link to one.
 

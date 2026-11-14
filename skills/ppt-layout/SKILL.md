@@ -1,12 +1,18 @@
 ---
 name: ppt-layout
-description: Assign a design system's slide layouts to every slide in a project's spec. Use when the user wants to choose, suggest, or map layouts for a spec.
-argument-hint: "[suggest] [project] [design system]"
+description: Assign a design system's slide layouts to every slide in a spec. Use when the user wants to choose, suggest, or map layouts for a spec.
+argument-hint: "[suggest] [--dir folder] [design system]"
 ---
 
 Give every slide in one spec a `**Layout:**` field, naming one layout from one design system. The field is a default the user can overwrite by hand, so it holds only the layout's name.
 
-`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop.
+**Folder:** the `--dir <folder>` argument, or else the folder an earlier `ppt-` skill used in this conversation. Otherwise, if the repo's `CLAUDE.md` or a file it points to has a `PowerPoint map` heading, take the paths below from that section. Otherwise ask the user for the folder path and wait. Create folders as you first write into them, and write nothing outside the folder.
+
+Paths, relative to the folder. The folder holds one deck:
+
+- `SPEC_DIR`: `spec/`
+- `ARCHITECTURE_FILE`: `spec/ARCHITECTURE.md`
+- `SECTION_FILE`: `spec/<section>.md`
 
 There are two modes:
 
@@ -14,8 +20,6 @@ There are two modes:
 - **`/ppt-layout suggest`:** do the same, then raise contested slides as open questions (step 4).
 
 ## 1. Resolve the inputs
-
-**Project:** the one the user named. Otherwise list `SPEC_DIR` and ask.
 
 **Design system:** the one the user named, or else the one in the `ARCHITECTURE_FILE` Brief. Otherwise run the `Artifact` tool's `list` action with `type: "Design System"` and ask which to use. Design systems are created outside this repo, so with none listed, ask the user for a link to one.
 
