@@ -1,0 +1,10 @@
+{
+  "name": "powerpoint-sdd",
+  "displayName": "PowerPoint SDD",
+  "version": "0.1.0",
+  "description": "Spec-driven PowerPoint decks: settle the content in a text spec through discussion, draft hard slides in HTML, then build the .pptx from the approved spec and a design system.",
+  "author": { "name": "Oshawotttt", "url": "https://github.com/Oshawotttt" },
+  "homepage": "https://github.com/Oshawotttt/powerpoint-sdd",
+  "repository": "https://github.com/Oshawotttt/powerpoint-sdd",
+  "keywords": ["powerpoint", "pptx", "slides", "spec-driven"]
+}

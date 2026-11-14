@@ -6,7 +6,7 @@ argument-hint: "[project] [design system]"
 
 Build one `.pptx` from one approved spec and one design system. The spec owns every word and each slide's chosen layout, the design system owns the look, and this skill owns the layout of any slide with no choice recorded.
 
-`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop. Load the `pptx` skill: it owns the pptxgenjs mechanics, structured decks, and QA scripts. Where the two skills conflict, this one wins.
+`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop. Load the `pptx` skill. If it is not available, tell the user to install it with `/plugin marketplace add anthropics/skills` and then `/plugin install document-skills@anthropic-agent-skills`, and stop. The `pptx` skill owns the pptxgenjs mechanics, structured decks, and QA scripts. Where the two skills conflict, this one wins.
 
 ## 1. Resolve the inputs
 

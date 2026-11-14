@@ -1,0 +1,12 @@
+{
+  "name": "powerpoint-sdd",
+  "owner": { "name": "Oshawotttt" },
+  "description": "Spec-driven PowerPoint workflow for Claude Code.",
+  "plugins": [
+    {
+      "name": "powerpoint-sdd",
+      "source": "./",
+      "description": "Spec-driven PowerPoint decks: spec, layout, draft, generate."
+    }
+  ]
+}
