@@ -1,16 +1,23 @@
 ---
 name: ppt-draft
 description: Draft a spec's hardest-to-organise slides as HTML, or the slides the user names. Use when the user wants to draft, mock up, or preview slides before building the deck.
-argument-hint: "[project] [slides]"
+argument-hint: "[--dir folder] [slides]"
 ---
 
 Draft a few slides as HTML, so the user can settle how the hard slides are organised while edits are still cheap. The spec owns every word, and a draft owns only the arrangement. `ppt-generate` follows the arrangement when it builds the deck.
 
-`ARCHITECTURE_FILE` and the other names in the PowerPoint map's reference table are file references. Resolve each one through that table, never from a remembered path. The map is in `CLAUDE.md`, or in `MAP.md` or another file `CLAUDE.md` points to. With no reference table, ask the user to run `/ppt-init` and stop.
+**Folder:** the `--dir <folder>` argument, or else the folder an earlier `ppt-` skill used in this conversation. Otherwise, if the repo's `CLAUDE.md` or a file it points to has a `PowerPoint map` heading, take the paths below from that section. Otherwise ask the user for the folder path and wait. Create folders as you first write into them, and write nothing outside the folder.
+
+Paths, relative to the folder. The folder holds one deck:
+
+- `SPEC_DIR`: `spec/`
+- `ARCHITECTURE_FILE`: `spec/ARCHITECTURE.md`
+- `SECTION_FILE`: `spec/<section>.md`
+- `RESOURCE_DIR`: `spec/resources/<section>/`
+- `GRAPH_DIR`: `spec/resources/<section>/<graph-name>/`
+- `DRAFT_FILE`: `spec/drafts/<section>-slide-<n>-<descriptor>.html`
 
 ## 1. Resolve the inputs
-
-**Project:** the one the user named. Otherwise list `SPEC_DIR` and ask.
 
 Read `ARCHITECTURE_FILE` and every section file that exists, whatever its status. With no slides yet, point the user to `/ppt-spec` and stop.
 

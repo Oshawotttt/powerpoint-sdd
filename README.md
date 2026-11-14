@@ -6,21 +6,19 @@ A plugin that applies spec-driven development (SDD) to making and drafting Power
 
 Prerequisites:
 
-- **Node.js and Python.** `/ppt-generate` installs `pptxgenjs`, `sharp` and the QA packages into a scratchpad, not your repo.
+- **Node.js and Python** installed on your machine. `/ppt-generate` installs the packages it needs by itself, into a temporary folder, so your repo stays free of `node_modules` and virtual environments.
 - **Anthropic's `pptx` skill.** `/ppt-generate` uses it for the build mechanics and QA. Skip this if you already have it enabled on claude.ai.
 
   ```
-  /plugin marketplace add anthropics/skills
-  /plugin install document-skills@anthropic-agent-skills
+  /plugin install document-skills --marketplace anthropics/skills
   ```
 
 - **A design system** made with Claude Design. `/ppt-layout` and `/ppt-generate` read it.
 
-Install the plugin, then set up the repo you want to keep your decks in:
+Install the plugin, then start a spec in the repo you want to keep your decks in:
 
 ```
 /plugin install powerpoint-sdd --marketplace Oshawotttt/powerpoint-sdd
-/ppt-init
 ```
 
 On Claude Code before 2.1.275, add the marketplace first: `/plugin marketplace add Oshawotttt/powerpoint-sdd`, then `/plugin install powerpoint-sdd@powerpoint-sdd`.
@@ -64,7 +62,7 @@ The `ppt-generate` skill builds the deck. Little support is needed here, because
 
 ### `ppt-init`
 
-Sets up a repo with the folders and a map of the file structure, so the AI has context on where everything lives.
+Optional. By default, you tell each skill where your PowerPoint files live with `--dir <folder>` (`--spec <folder>` and `--out <folder>` for `/ppt-generate`), or it asks you. `ppt-init` specifies these folders with a map in `CLAUDE.md` instead.
 
 ### `ppt-layout`
 
