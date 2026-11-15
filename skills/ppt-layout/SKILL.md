@@ -14,6 +14,8 @@ Paths, relative to the folder. The folder holds one deck:
 - `ARCHITECTURE_FILE`: `spec/ARCHITECTURE.md`
 - `SECTION_FILE`: `spec/<section>.md`
 
+`<section>` is the section's number in `ARCHITECTURE_FILE` as two digits, a hyphen, and its name in kebab-case, such as `01-problem`.
+
 There are two modes:
 
 - **Default:** write one layout per slide and change nothing else in the spec.

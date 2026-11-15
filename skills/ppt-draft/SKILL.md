@@ -17,6 +17,8 @@ Paths, relative to the folder. The folder holds one deck:
 - `GRAPH_DIR`: `spec/resources/<section>/<graph-name>/`
 - `DRAFT_FILE`: `spec/drafts/<section>-slide-<n>-<descriptor>.html`
 
+`<section>` is the section's number in `ARCHITECTURE_FILE` as two digits, a hyphen, and its name in kebab-case, such as `01-problem`.
+
 ## 1. Resolve the inputs
 
 Read `ARCHITECTURE_FILE` and every section file that exists, whatever its status. With no slides yet, point the user to `/ppt-spec` and stop.

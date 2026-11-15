@@ -23,6 +23,8 @@ Paths in the spec folder:
 - `GRAPH_DIR`: `resources/<section>/<graph-name>/`
 - `DRAFT_FILE`: `drafts/<section>-slide-<n>-<descriptor>.html`
 
+`<section>` is the section's number in `ARCHITECTURE_FILE` as two digits, a hyphen, and its name in kebab-case, such as `01-problem`.
+
 Paths in the output folder:
 
 - `DECK_FILE`: `<deck>.pptx`, where `<deck>` is the deck's title from `ARCHITECTURE_FILE` in kebab-case
