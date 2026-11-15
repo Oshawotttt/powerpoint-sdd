@@ -57,6 +57,7 @@ The deck is the spec, slide for slide. Sections and slides keep the order in `AR
 |---|---|
 | Section | PowerPoint section with the same name |
 | Slide descriptor | Build label only, off the slide |
+| **Title** | Slide title, verbatim. No title if the field is absent |
 | **Purpose** | Guides layout and emphasis, off the slide |
 | **Layout** | The design system layout the slide is built on, off the slide. See the layouts rule below |
 | **Content** text | Slide text, verbatim |

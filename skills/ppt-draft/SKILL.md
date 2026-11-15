@@ -64,7 +64,7 @@ Use this page, with all styles inline and no external scripts or fonts. The stag
 
 Build the slide from these rules:
 
-- **Text:** the slide's **Content** text and any **Transition (slide)**, verbatim. Purpose and speaker notes stay off the slide.
+- **Text:** the slide's **Title**, **Content** text, and any **Transition (slide)**, verbatim. Purpose and speaker notes stay off the slide.
 - **Arrangement:** follow the slide's `**Layout:**` and the design system's definition of it. With no layout defined, choose the arrangement that best serves the slide's **Purpose**.
 - **Sizes:** title 48-59 px, section headers 27-32 px, body 19-21 px, captions 13-16 px. These are the `pptx` skill's Typography sizes at this scale. Keep the 48 px margin.
 - **Buildable shapes:** use what PowerPoint can rebuild natively: text boxes, rectangles, lines, arrows, pictures, tables, and charts.
