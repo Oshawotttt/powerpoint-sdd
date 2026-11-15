@@ -72,7 +72,6 @@ The AI makes the first layer of decisions, because most layout options are obvio
 
 For more control over the layout, run `/ppt-layout suggest`. The AI still picks a best fit for every slide, but it also raises the slides where the choice is contested as open questions for you to settle.
 
-
 ### `ppt-combine`
 
 Writes the whole spec into one file, `spec/FULL.md`, so you can read or share the deck top to bottom. It holds `ARCHITECTURE.md`, then every section file whose name starts with a two-digit number (such as `01-problem.md`), in file-name order. Other files in `spec/` are left out.
