@@ -92,11 +92,15 @@ Starting branch: `feat/numbering-slides`
   - README "Other skills" gets a `ppt-combine` entry.
   - `docs/TODO.md`: tick "Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown"; replace "Make bat CLI to remove files and renumber" with a ticked line saying Claude renumbers from `ARCHITECTURE_FILE`, no CLI.
 - **Acceptance criteria:**
-  - [ ] `grep -n "combine.sh" skills/ppt-combine/SKILL.md` shows the run command.
-  - [ ] `grep -rln "FULL.md" skills/` lists ppt-combine, ppt-spec, ppt-draft, ppt-layout, ppt-generate, ppt-init.
-  - [ ] `grep -n "ppt-combine" README.md skills/ppt-init/SKILL.md` shows both entries.
-  - [ ] `grep -n "\[ \]" docs/TODO.md` shows neither CLI item.
+  - [x] `grep -n "combine.sh" skills/ppt-combine/SKILL.md` shows the run command.
+  - [x] `grep -rln "FULL.md" skills/` lists ppt-combine, ppt-spec, ppt-draft, ppt-layout, ppt-generate, ppt-init.
+  - [x] `grep -n "ppt-combine" README.md skills/ppt-init/SKILL.md` shows both entries.
+  - [x] `grep -n "\[ \]" docs/TODO.md` shows neither CLI item.
 - **Doc deltas:** README `ppt-combine` entry (content listed under S1).
+  - `ppt-combine` SKILL.md defines `FULL_FILE` (`spec/FULL.md`) beside `SPEC_DIR`, so it uses the same name as the `ppt-init` map row. No doc needed.
+  - The note that `FULL.md` is not a section file sits where each skill reads every section file: `ppt-draft` step 1, `ppt-layout` step 2, `ppt-generate` step 2, `ppt-spec` Stage 3. `ppt-spec` reads only `ARCHITECTURE_FILE` on resume, so it needs no note there. No doc needed.
+  - README entry also tells the user they can run `bash combine.sh` or `combine.bat` by hand from the plugin's `skills/ppt-combine/` folder, since the spec's human check runs the `.bat` from a Windows terminal. In README.
+  - TODO renumber line reads "Renumbering sections: Claude renumbers from `ARCHITECTURE_FILE` (no CLI)". In TODO.
 
 ## Human checks
 
