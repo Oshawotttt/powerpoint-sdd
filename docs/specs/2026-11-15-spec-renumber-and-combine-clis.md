@@ -46,7 +46,7 @@ Starting branch: `feat/numbering-slides`
 - **Blocked by:** none
 - **Branch:** `feat/numbering-slides`
 - **Order on branch:** 1
-- **Files:** `skills/ppt-combine/combine.sh`, `skills/ppt-combine/combine.bat`, `skills/ppt-combine/test/combine-test.sh`, `skills/ppt-combine/test/fixtures/spec/` (`ARCHITECTURE.md`, `01-a.md`, `02-b.md`, `10-c.md`, `notes.md`), `skills/ppt-combine/test/fixtures/expected-FULL.md`
+- **Files:** `skills/ppt-combine/combine.sh`, `skills/ppt-combine/combine.bat`, `skills/ppt-combine/test/combine-test.sh`, `skills/ppt-combine/test/fixtures/spec/` (`ARCHITECTURE.md`, `01-a.md`, `02-b.md`, `10-c.md`, `notes.md`), `skills/ppt-combine/test/fixtures/expected-FULL.md`, `skills/ppt-combine/.gitattributes`, `.gitignore`
 - **Seams:**
   - `bash skills/ppt-combine/combine.sh <spec folder>`: catches order, separators, banner, overwrite, errors.
   - `cmd //c "skills\\ppt-combine\\combine.bat <spec folder>"` (run from the test script): catches the same on `cmd`; misses non-Windows (`.bat` is Windows only).
@@ -58,11 +58,20 @@ Starting branch: `feat/numbering-slides`
   - Lives in the spec folder so resource paths resolve unchanged. `transient`.
   - Errors: missing `ARCHITECTURE.md` prints `ARCHITECTURE.md not found in <folder>` to stderr, exits 1, writes nothing. Success prints the output path, exits 0. Doc delta (README).
 - **Acceptance criteria:**
-  - [ ] `combine.sh` on the fixture produces a file byte-identical to `expected-FULL.md` (order `01-a`, `02-b`, `10-c`; `notes.md` excluded) (`combine-test.sh`).
-  - [ ] `combine.bat` on the fixture produces the same bytes, ignoring CRLF vs LF (`combine-test.sh`, skipped with a message when `cmd` is absent).
-  - [ ] Second run overwrites and output is unchanged (`combine-test.sh`).
-  - [ ] Folder without `ARCHITECTURE.md`: exit 1, stderr message, no `FULL.md` created, for both scripts (`combine-test.sh`).
+  - [x] `combine.sh` on the fixture produces a file byte-identical to `expected-FULL.md` (order `01-a`, `02-b`, `10-c`; `notes.md` excluded) (`combine-test.sh`).
+  - [x] `combine.bat` on the fixture produces the same bytes, ignoring CRLF vs LF (`combine-test.sh`, skipped with a message when `cmd` is absent; `cmd` is found through `COMSPEC` when it is not on `PATH`).
+  - [x] Second run overwrites and output is unchanged (`combine-test.sh`).
+  - [x] Folder without `ARCHITECTURE.md`: exit 1, stderr message, no `FULL.md` created, for both scripts (`combine-test.sh`).
 - **Doc deltas:** README: the `ppt-combine` entry (S2) states the output file, that it is generated and not to be edited, the order rule, and that it needs no install.
+  - Spec change: **Files** gained `skills/ppt-combine/.gitattributes` and `.gitignore`.
+  - `skills/ppt-combine/.gitattributes` pins `*.sh` and fixtures to LF and `*.bat` to CRLF: the repo has `core.autocrlf=true`, which would turn fixtures into CRLF and break the byte-identical check, and `cmd` needs CRLF in `.bat` files. No doc needed (the file explains itself).
+  - `.gitignore` re-includes `skills/ppt-combine/test/fixtures/spec/`, since the existing `spec/` rule ignored the fixture folder; also added the missing final newline. No doc needed.
+  - `combine.bat` calls `findstr` as `%SystemRoot%\System32\findstr.exe`, because `PATH` under Git Bash can lack `System32` and the test runs the `.bat` from there. Comment in the script.
+  - Section filtering in `combine.bat`: `dir /b /a-d /on` then `findstr "^[0-9][0-9]-.*\.md$"` (case-sensitive), matching the `.sh` glob, because `dir` wildcards are loose (case-insensitive, 8.3 names). No doc needed.
+  - Printed output path is `<folder as given>/FULL.md` (`./FULL.md` with no argument); `.bat` uses `\`. No doc needed.
+  - Test copies the fixtures to a temp folder per case, so runs never write into the repo. No doc needed.
+  - `combine.bat` keeps the folder path out of parenthesised blocks (`goto missing`) and echoes it with delayed expansion (`!DIR!`, `!OUT!`), so paths with spaces, `( )` or `&` work. Comment in the script.
+  - Known gap: two section files with the same number prefix that differ only in letter case may sort differently (`.sh` sorts by bytes, `dir /on` ignores case). Not fixed: sections have unique numbers. No doc needed.
 
 ### S2: `ppt-combine` skill and docs
 
