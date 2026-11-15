@@ -84,9 +84,10 @@ Work through the sections in architecture order, one at a time, unless the user 
 
 1. **Test the context.** There is enough when you can draft the exact text of most slides and every gap is a specific question or assumption. If there is not enough, run frontier rounds until there is. Create the section file only after this test passes.
 2. **Write `SECTION_FILE`** in the format below, with multiple slides. List every open question and assumption in `Blocked by`, and note any question that waits on another.
-3. **Present it.** Link the file and ask the current frontier round from `Blocked by`.
-4. **Integrate each answer.** Update the slides to reflect it, then remove the item from `Blocked by`. Add any new questions or assumptions that the answers raise.
-5. **Repeat from step 3.** The section is approved when `Blocked by` is empty and the user has explicitly approved it.
+3. **Check flow, immediately.** Before presenting the file or asking any question, read the slides in order and apply [Transitions and overviews](#transitions-and-overviews). Write each proposal into the slides and list it under `Assumptions`, so the user decides it in the same round as the content.
+4. **Present it.** Link the file and ask the current frontier round from `Blocked by`.
+5. **Integrate each answer.** Update the slides to reflect it, then remove the item from `Blocked by`. Add any new questions or assumptions that the answers raise. When an answer changes the slide order or adds or removes a slide, repeat step 3 for the affected slides before asking the next round.
+6. **Repeat from step 4.** The section is approved when `Blocked by` is empty and the user has explicitly approved it.
 
 If the discussion shows that a section should split, merge, or move, propose the change. Update `ARCHITECTURE_FILE` once the user approves it.
 
@@ -102,10 +103,12 @@ If the discussion shows that a section should split, merge, or move, propose the
 ## Slides
 
 ### Slide 1: <descriptor>
+**Title:** <the exact title shown on the slide>
+
 **Purpose:** <why this slide exists>
 
 **Content:**
-<the exact text and phrasing that will appear on the slide, plus any visual>
+<the exact text and phrasing that will appear on the slide below the title, plus any visual>
 
 **Speaker notes:**
 <what the presenter says>
@@ -113,7 +116,23 @@ If the discussion shows that a section should split, merge, or move, propose the
 
 ### Slide content
 
-Follow the user's guidance on language and concision, recorded in the Brief. Every fact on a slide traces to the user's input, `CONTEXT_DIR`, or an answered question. Anything else is an assumption, so list it in `Blocked by`.
+Follow the user's guidance on language and concision, recorded in the Brief. The **Title** is audience-facing text, distinct from the descriptor, which is only a build label. Omit **Title** only on a slide with no title, such as a full-bleed image. Every fact on a slide traces to the user's input, `CONTEXT_DIR`, or an answered question. Anything else is an assumption, so list it in `Blocked by`.
+
+### Transitions and overviews
+
+Check each of these in the section:
+
+- **Slide pairs:** each consecutive pair where the jump between ideas needs a written transition.
+- **Outgoing boundary:** whether the last slide needs a transition into the next section, based on **Leads into next section** in `ARCHITECTURE_FILE`. The last section has no outgoing boundary.
+- **Section overview:** whether the section needs an overview slide at its start, previewing its parts. Propose one when the section has several distinct parts or enough slides that the audience needs a map.
+- **Deck overview:** in the first section only, whether the deck needs an agenda slide listing the sections. Weigh the duration and the number of sections in the Brief.
+
+Overview slides and transitions are both optional, so propose them only where they help. An overview slide is an ordinary slide in the section file, with its own **Title**, **Purpose**, **Content**, and **Speaker notes**. A transition goes on the slide it leads out of. Its two fields are each optional, so use either one or both:
+
+```markdown
+**Transition (slide):** <text shown on the slide>
+**Transition (notes):** <line spoken by the presenter>
+```
 
 ### Layout
 
@@ -132,14 +151,7 @@ Start once every section is approved. Read the whole spec and check all of these
 - **Correctness:** every fact and number matches its source, and every resource reference resolves.
 - **Slide links:** each slide's content follows from the slide before it, for every consecutive pair in every section.
 - **Section links:** each section boundary delivers the hand-off in `ARCHITECTURE_FILE`, and the sections still match their stated purpose.
-- **Transitions:** each slide pair and section boundary where a written transition would help.
-
-Transition fields are optional, and the user can settle any transition themselves. When one is used, record it on the slide it leads out of, in either place:
-
-```markdown
-**Transition (slide):** <text shown on the slide>
-**Transition (notes):** <line spoken by the presenter>
-```
+- **Transitions and overviews:** recheck every section boundary and the deck overview against the final spec, as in [Transitions and overviews](#transitions-and-overviews). Earlier sections were checked before later ones existed.
 
 Present findings as a frontier round, each with the exact edit you propose. Apply only what the user approves.
 

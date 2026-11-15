@@ -1,7 +1,7 @@
 - [ ] Order the sections in the file names
 - [ ] Make bat CLI to remove files and renumber
 - [ ] Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown
-- [ ] Add titles, and transition & overview slides
+- [x] Add titles, and transition & overview slides
 - [ ] Option for slide resources behind (hidden) for edits
 - [ ] Skills for creating design systems
 - [ ] Publish a worked example repo (full spec, drafts, design system, output) to show the workflow end to end

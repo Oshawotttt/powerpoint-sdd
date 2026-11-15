@@ -47,6 +47,8 @@ Write the catalog name verbatim, directly after **Purpose**:
 
 ```markdown
 ### Slide 3: <descriptor>
+**Title:** <slide title>
+
 **Purpose:** <why this slide exists>
 
 **Layout:** <layout name>
