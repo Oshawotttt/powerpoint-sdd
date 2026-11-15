@@ -71,3 +71,12 @@ Specifies the layout of each slide. It is optional in the workflow.
 The AI makes the first layer of decisions, because most layout options are obvious. You can then choose or edit any layout, so decision making and personalisation still lie with you.
 
 For more control over the layout, run `/ppt-layout suggest`. The AI still picks a best fit for every slide, but it also raises the slides where the choice is contested as open questions for you to settle.
+
+
+### `ppt-combine`
+
+Writes the whole spec into one file, `spec/FULL.md`, so you can read or share the deck top to bottom. It holds `ARCHITECTURE.md`, then every section file whose name starts with a two-digit number (such as `01-problem.md`), in file-name order. Other files in `spec/` are left out.
+
+`FULL.md` is generated and overwritten on every run, so don't edit it: edit `ARCHITECTURE.md` and the section files, then run `/ppt-combine` again. It sits in `spec/`, so picture paths still resolve.
+
+The skill runs `combine.sh`, which needs only a POSIX shell (Git Bash on Windows). You can also run the scripts yourself from the plugin's `skills/ppt-combine/` folder: `bash combine.sh <spec folder>` or, in a Windows terminal, `combine.bat <spec folder>`. With no folder, they use the current directory. Neither needs anything installed.

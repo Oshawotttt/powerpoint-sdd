@@ -1,6 +1,6 @@
 - [x] Order the sections in the file names
-- [ ] Make bat CLI to remove files and renumber
-- [ ] Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown
+- [x] Renumbering sections: Claude renumbers from `ARCHITECTURE_FILE` (no CLI)
+- [x] Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown
 - [x] Add titles, and transition & overview slides
 - [ ] Option for slide resources behind (hidden) for edits
 - [ ] Skills for creating design systems
