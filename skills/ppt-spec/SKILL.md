@@ -20,6 +20,8 @@ Paths, relative to the folder. The folder holds one deck:
 - `CONTEXT_DIR`: `context/`
 - `CONTEXT_REPO_DIR`: `context/<repo>/`
 
+`<section>` is the section's number in `ARCHITECTURE_FILE` as two digits, a hyphen, and its name in kebab-case, such as `01-problem`. The number keeps the files in presentation order in a file explorer.
+
 Take whatever the user gives: an idea dump, a current outline, a scope, a repo, or a mix.
 
 - **Repo URL:** clone it into `CONTEXT_REPO_DIR` and read what bears on the presentation.
@@ -89,10 +91,10 @@ Work through the sections in architecture order, one at a time, unless the user 
 5. **Integrate each answer.** Update the slides to reflect it, then remove the item from `Blocked by`. Add any new questions or assumptions that the answers raise. When an answer changes the slide order or adds or removes a slide, repeat step 3 for the affected slides before asking the next round.
 6. **Repeat from step 4.** The section is approved when `Blocked by` is empty and the user has explicitly approved it.
 
-If the discussion shows that a section should split, merge, or move, propose the change. Update `ARCHITECTURE_FILE` once the user approves it.
+If the discussion shows that a section should split, merge, or move, propose the change. Once the user approves it, update `ARCHITECTURE_FILE` and renumber the sections in their new order. For every section whose number changed, rename its `SECTION_FILE`, its `RESOURCE_DIR`, and any draft in `spec/drafts/` that starts with its old `<section>`. Then update every reference to the old paths: the **File** fields, the section heading, and resource paths in slides.
 
 ```markdown
-# <Section name>
+# <n>. <Section name>
 
 ## Blocked by
 

@@ -1,4 +1,4 @@
-- [ ] Order the sections in the file names
+- [x] Order the sections in the file names
 - [ ] Make bat CLI to remove files and renumber
 - [ ] Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown
 - [x] Add titles, and transition & overview slides

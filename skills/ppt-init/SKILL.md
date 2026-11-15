@@ -77,6 +77,8 @@ Skills refer to files by the names below. To move a file, change its path here. 
 | `CONTEXT_DIR` | `context/` | All cloned repos. `/ppt-spec` searches it for facts. |
 | `CONTEXT_REPO_DIR` | `context/<repo>/` | One cloned repo, for reference when drafting. `/ppt-spec` clones into it. |
 
+`<section>` is the section's number in `ARCHITECTURE_FILE` as two digits, a hyphen, and its name in kebab-case, such as `01-problem`, so files sort in presentation order.
+
 Skills: `/ppt-spec` creates a spec through discussion. `/ppt-layout` assigns a design system's layouts to the spec's slides. `/ppt-draft` drafts the hardest slides in HTML. `/ppt-generate` builds the deck from an approved spec and a design system.
 
 <gitignored folders> are gitignored, so their contents exist only on this machine. Ripgrep-based search skips them by default; pass `--no-ignore` or target the path directly.
