@@ -78,6 +78,14 @@ else
     fail "combine.sh with no argument did not write FULL.md in the current directory"
 fi
 
+spec=$(fresh_spec "sh Deck (v2)/spec")
+run_sh "$spec" >/dev/null
+if [ $? -eq 0 ] && cmp -s "$spec/FULL.md" "$EXPECTED"; then
+    pass "combine.sh handles a folder path with a space and parentheses"
+else
+    fail "combine.sh failed on a folder path with a space and parentheses"
+fi
+
 empty=$(fresh_empty sh-missing)
 err=$(run_sh "$empty" 2>&1 >/dev/null)
 code=$?
@@ -113,6 +121,22 @@ else
         pass "combine.bat second run overwrites with unchanged output"
     else
         fail "combine.bat second run changed the output"
+    fi
+
+    spec=$(fresh_spec "bat Deck (v2)/spec")
+    run_bat "$spec" >/dev/null
+    if [ $? -eq 0 ] && [ -f "$spec/FULL.md" ] && tr -d '\r' < "$spec/FULL.md" | cmp -s - "$EXPECTED"; then
+        pass "combine.bat handles a folder path with a space and parentheses"
+    else
+        fail "combine.bat failed on a folder path with a space and parentheses"
+    fi
+
+    empty=$(fresh_empty "bat Miss (x)")
+    err=$(run_bat "$empty" 2>&1 >/dev/null | tr -d '\r')
+    if [ "$err" = "ARCHITECTURE.md not found in $(cygpath -w "$empty")" ]; then
+        pass "combine.bat reports the full folder path when it has parentheses"
+    else
+        fail "combine.bat printed '$err' for a missing ARCHITECTURE.md in a folder with parentheses"
     fi
 
     empty=$(fresh_empty bat-missing)
