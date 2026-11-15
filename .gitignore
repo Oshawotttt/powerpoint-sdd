@@ -2,4 +2,5 @@ output/
 spec/
 context/
 
-templates/!skills/ppt-combine/test/fixtures/spec/
+templates/
+!skills/ppt-combine/test/fixtures/spec/
