@@ -23,8 +23,8 @@ fresh_spec() {
     echo "$d"
 }
 
-# Prints the path of a fresh empty folder (no ARCHITECTURE.md).
-fresh_empty() {
+# Prints the path of a fresh spec folder holding one section file and no ARCHITECTURE.md.
+fresh_spec_without_architecture() {
     d="$WORK/$1"
     mkdir -p "$d"
     cp "$FIXTURES/spec/01-a.md" "$d/"
@@ -86,7 +86,7 @@ else
     fail "combine.sh failed on a folder path with a space and parentheses"
 fi
 
-empty=$(fresh_empty sh-missing)
+empty=$(fresh_spec_without_architecture sh-missing)
 err=$(run_sh "$empty" 2>&1 >/dev/null)
 code=$?
 if [ $code -eq 1 ] && [ "$err" = "ARCHITECTURE.md not found in $empty" ] && [ ! -e "$empty/FULL.md" ]; then
@@ -131,7 +131,7 @@ else
         fail "combine.bat failed on a folder path with a space and parentheses"
     fi
 
-    empty=$(fresh_empty "bat Miss (x)")
+    empty=$(fresh_spec_without_architecture "bat Miss (x)")
     err=$(run_bat "$empty" 2>&1 >/dev/null | tr -d '\r')
     if [ "$err" = "ARCHITECTURE.md not found in $(cygpath -w "$empty")" ]; then
         pass "combine.bat reports the full folder path when it has parentheses"
@@ -139,9 +139,10 @@ else
         fail "combine.bat printed '$err' for a missing ARCHITECTURE.md in a folder with parentheses"
     fi
 
-    empty=$(fresh_empty bat-missing)
-    err=$(run_bat "$empty" 2>&1 >/dev/null | tr -d '\r')
-    code=$(run_bat "$empty" >/dev/null 2>&1; echo $?)
+    empty=$(fresh_spec_without_architecture bat-missing)
+    err=$(run_bat "$empty" 2>&1 >/dev/null)
+    code=$?
+    err=$(printf '%s' "$err" | tr -d '\r')
     if [ "$code" -eq 1 ] && [ "$err" = "ARCHITECTURE.md not found in $(cygpath -w "$empty")" ] && [ ! -e "$empty/FULL.md" ]; then
         pass "combine.bat without ARCHITECTURE.md exits 1, reports it, writes nothing"
     else
