@@ -58,6 +58,8 @@ The `ppt-draft` skill drafts a few slides in HTML, because HTML is cheaper to ed
 
 The `ppt-generate` skill builds the deck. Little support is needed here, because design systems are made with Claude Design or with `/ppt-design-system`. Generation is built on these existing tools, courtesy of Anthropic.
 
+Run `/ppt-generate --resources` to add resource slides after the last spec slide, like the extra pages at the back of a Slidesgo template: the design system's colors, fonts, icons, illustrations and editable pieces, ready to copy onto a slide. They are hidden, so a slideshow skips them. If the design system has no icons or illustrations, the skill asks whether to draw them, and takes optional directions.
+
 ## Other skills
 
 ### `ppt-init`
