@@ -34,7 +34,7 @@ Load the `pptx` skill. If it is not available, tell the user to install it with 
 
 ## 1. Resolve the inputs
 
-**Design system:** the one the user named, or else the one in the `ARCHITECTURE_FILE` Brief. Otherwise run the `Artifact` tool's `list` action with `type: "Design System"` and ask which to use. Design systems are created outside this repo, so with none listed, ask the user for a link to one.
+**Design system:** the one the user named, or else the one in the `ARCHITECTURE_FILE` Brief. Otherwise run the `Artifact` tool's `list` action with `type: "Design System"` and ask which to use. With none listed, ask the user for a link to one, or point them to `/ppt-design-system` to make one from a slide template.
 
 `read` the Design System artifact's `project/README.md` and `project/tokens.json`, then the assets its README tells you to use.
 
@@ -88,8 +88,9 @@ Visuals:
 The design system replaces the `pptx` skill's palette, font, and motif choices. Those Design Ideas still guide layout variety and spacing, and its Avoid list still applies, unless the design system says otherwise.
 
 - **Colors:** fill `THEME` from the color tokens, choosing each role from its `usage` note. Use the theme the README recommends for slides, or else the first. Follow `{alias}` values to their token. Convert an alpha value such as `#0000001a` to 6-digit hex plus `transparency`, or to the solid color it makes on the background.
-- **Fonts:** take heading and body faces from `type.families`. For a CSS stack, use the first named face a presenting machine can have, such as `Segoe UI`, and skip keywords such as `system-ui`. Take weights and hierarchy from the type styles. Scale a web-sized type scale up to slide sizes, keeping the `pptx` skill's Typography floors.
+- **Fonts:** take heading and body faces from `type.families`. For a CSS stack, use the first named face a presenting machine can have, such as `Segoe UI`, and skip keywords such as `system-ui`. Take weights and hierarchy from the type styles. When the README gives a slide canvas, such as 1280 × 720 px, the sizes are already slide sizes: convert them by that canvas (1 pt = 4/3 px on 1280 × 720). Otherwise scale a web-sized type scale up to slide sizes. Either way keep the `pptx` skill's Typography floors.
 - **Spacing and radius:** use the tokens' proportions, scaled to the slide.
+- **Layouts:** when the system has `project/slide-layouts.md`, build each layout to the regions and geometry it gives.
 - **Assets:** use the system's real logo and image files, and rasterize SVGs as the `pptx` skill describes. With no logo file, leave the logo out.
 
 ## 5. Build

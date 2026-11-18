@@ -13,7 +13,7 @@ Prerequisites:
   /plugin install document-skills --marketplace anthropics/skills
   ```
 
-- **A design system** made with Claude Design. `/ppt-layout` and `/ppt-generate` read it.
+- **A design system** made with Claude Design, or made from a slide template with `/ppt-design-system`. `/ppt-layout` and `/ppt-generate` read it.
 
 Install the plugin, then start a spec in the repo you want to keep your decks in:
 
@@ -56,7 +56,7 @@ The `ppt-draft` skill drafts a few slides in HTML, because HTML is cheaper to ed
 
 ### 3. Generate
 
-The `ppt-generate` skill builds the deck. Little support is needed here, because design systems are created outside this repo with Claude Design. Generation is built on these existing tools, courtesy of Anthropic.
+The `ppt-generate` skill builds the deck. Little support is needed here, because design systems are made with Claude Design or with `/ppt-design-system`. Generation is built on these existing tools, courtesy of Anthropic.
 
 ## Other skills
 
@@ -71,6 +71,19 @@ Specifies the layout of each slide. It is optional in the workflow.
 The AI makes the first layer of decisions, because most layout options are obvious. You can then choose or edit any layout, so decision making and personalisation still lie with you.
 
 For more control over the layout, run `/ppt-layout suggest`. The AI still picks a best fit for every slide, but it also raises the slides where the choice is contested as open questions for you to settle.
+
+### `ppt-design-system`
+
+Turns a slide template (`.pptx`, `.potx`, PDF, images, a Google Slides link, HTML or a Beamer theme) into a design system that `/ppt-layout` and `/ppt-generate` read. It copies the template's exact colors, fonts, layouts and assets.
+
+If you don't say, it asks whether the system is for general or specific use, what you plan to use it for, and which formats it must support, such as PowerPoint, HTML or LaTeX Beamer.
+
+By default it also adds:
+
+- **A slide template:** a catalog of named layouts with their geometry, plus template files for each format you chose. Skip it with `--no-template`.
+- **Resource slides:** pages of colors, fonts, icons, illustrations and editable pieces, which `/ppt-generate --resources` copies into a deck. Skip them with `--no-resources`. If the template has no icons or illustrations, it asks whether to draw them, and takes optional directions.
+
+Templates from sites such as Slidesgo usually require attribution: the skill keeps any credits page and tells you.
 
 ### `ppt-combine`
 

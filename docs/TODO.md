@@ -3,5 +3,5 @@
 - [x] Make bat CLI to turn ARCHITECTURE.md and all sections into one markdown
 - [x] Add titles, and transition & overview slides
 - [ ] Option for slide resources behind (hidden) for edits
-- [ ] Skills for creating design systems
+- [x] Skills for creating design systems
 - [ ] Publish a worked example repo (full spec, drafts, design system, output) to show the workflow end to end
